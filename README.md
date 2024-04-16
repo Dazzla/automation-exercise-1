@@ -20,21 +20,22 @@ Please create an automated script that will cover the below scenario.
 
 2.	Please make sure the elements below are present and clickable:
 
-In Home page, Under Transform Your Risk Decision Making Heading
+In Home page, Under Choose Your Industry heading 
 
 -	Financial Services
 -	Insurance
 -	Life and Pensions
 -	Corporations and Non-Profits
 
-In Choose your Industry Tab, Under Industries Select Financial Services
+In Choose your Industry Tab, Select an Industry, then Select Financial Services
 
 -	Financial Crime Compliance
--	Fraud and Identity Management 
 -	Customer Data Management
--	Credit Risk Assessment 
 -	Collections & Recovery
--	Tracing and Investigations 
+-	Risk Orchestration
+-	Fraud and Identity Management
+-	Credit Risk Assessment
+-	Investigations and Due Diligence
 
 # Report
 
