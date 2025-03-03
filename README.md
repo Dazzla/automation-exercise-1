@@ -16,6 +16,7 @@ All the aspects above should be scenarios written in Cucumber describing the exp
 - Code should be in a GitHub repository
 
 # Important Notes:
+- DO NOT FORK THIS REPOSITORY. Create a separate repository
 - Please resolve as much as you can in an efficient way, it is not mandatory to solve all, it only helps us
 in the technical evaluation as a basis for discussion.
 - Please spend no longer than 2 days working on this task. (we appreciate that this isn’t much time but we’d like to
