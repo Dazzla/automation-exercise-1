@@ -1,7 +1,6 @@
-Feature: Web Form submission
+Feature: Form submission
 
   Scenario: Submit web form successfully
-    Given the user navigates to the web form
-    When the user fills out the form with valid data
-    And submits the form
-    Then the form should display a success message
+    Given I am on the form submission page
+    When I submit the form with valid data
+    Then I see a confirmation message
