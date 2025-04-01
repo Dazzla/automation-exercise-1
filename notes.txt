@@ -1,3 +1,0 @@
-Tech Debt Log
-
-Add notes for Java Runtime configuration
