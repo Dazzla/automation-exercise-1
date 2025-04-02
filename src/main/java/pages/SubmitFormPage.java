@@ -7,6 +7,11 @@ import org.openqa.selenium.WebElement;
 
 public class SubmitFormPage {
 
+    public static final String RED = "red";
+    public static final String SAN_FRANCISCO = "San Francisco";
+    public static final String TWO = "Two";
+    public static final String SAMPLE_TEXT = "Sample Text";
+    public static final String DATE = "12/12/2020";
     final String NAME = "Test User";
     final String PASSWORD = "complexpassword";
     public static final String EMPTY = "";
@@ -49,13 +54,13 @@ public class SubmitFormPage {
     public void completeForm(){
         textInput.sendKeys(NAME);
         passwordInput.sendKeys(PASSWORD);
-        textAreaInput.sendKeys("Sample Text");
-        dropdownSelectInput.sendKeys("Two");
-        datalistInput.sendKeys("San Francisco");
+        textAreaInput.sendKeys(SAMPLE_TEXT);
+        dropdownSelectInput.sendKeys(TWO);
+        datalistInput.sendKeys(SAN_FRANCISCO);
         checkedCheckboxInput.click();
         uncheckedRadioInput.click();
-        colorPickerInput.sendKeys("red");
-        datePickerInput.sendKeys("12/12/2020");
+        colorPickerInput.sendKeys(RED);
+        datePickerInput.sendKeys(DATE);
         sliderInput.sendKeys(Keys.ARROW_RIGHT);
 }
 
