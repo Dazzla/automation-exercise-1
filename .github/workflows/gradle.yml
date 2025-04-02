@@ -1,0 +1,49 @@
+name: Java CI with Gradle
+
+# Triggers the workflow on push or pull requests to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Define the jobs to run in the workflow
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest   # Use the latest Ubuntu runner
+    
+    # Steps to perform in the CI pipeline
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4  # Check out your repository's code
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'  # Use Eclipse Temurin JDK distribution
+          java-version: '17'       # You can set this to 17, 21, or 23 based on your project
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle
+
+      - name: Build with Gradle
+        run: ./gradlew clean build
+
+      - name: Run tests
+        run: ./gradlew test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: build/reports/tests/test
