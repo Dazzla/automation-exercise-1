@@ -5,9 +5,9 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
 import pages.SubmitFormPage;
-import WebDriverHelpers.WebDriverFactory;
 
 
 import java.time.Duration;
@@ -15,12 +15,12 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class FieldTestingSteps extends BaseTest{
+public class FormTestingSteps extends BaseTest{
 
+    public static final String CONFIRMATION_MESSAGE = "Received!";
 
-    public FieldTestingSteps(SharedDriver sharedDriver) {
-        this.driver = sharedDriver.getDriver();  // Initialize the driver, not create a new FormSubmissionSteps
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public FormTestingSteps(SharedDriver sharedDriver) {
+        this.driver = sharedDriver.getDriver();  // Initialize the driver from SharedDriver
     }
 
 
@@ -34,6 +34,13 @@ public class FieldTestingSteps extends BaseTest{
     private WebDriverWait wait;
 
     SubmitFormPage submitFormPage;
+
+    @Before
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver"); //Make sure to configure
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
 
     @Then("I see that the Text Input is empty")
@@ -114,11 +121,29 @@ public class FieldTestingSteps extends BaseTest{
         assertEquals("https://www.selenium.dev/selenium/web/index.html", driver.getCurrentUrl());
     }
 
+    @Given("I am on the form submission page")
+    public void navigate_to_web_form() {
+        driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+    }
+
+    @When("I submit the form with valid data")
+    public void fill_form() {
+        SubmitFormPage submitFormPage = new SubmitFormPage(driver);
+        submitFormPage.completeFormAndSubmit();
+    }
+
+    @Then("I see a confirmation message")
+    public void verify_success_message() {
+        WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
+        assertEquals(CONFIRMATION_MESSAGE, message.getText());
+    }
+
+
     @After
     public void tearDown() {
         if (driver != null) {
             driver.quit();
-            driver = null;
+            driver = null; // Resetting driver
         }
     }
 }
