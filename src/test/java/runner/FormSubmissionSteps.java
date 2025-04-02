@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import pages.SubmitFormPage;
-import WebDriver.WebDriverFactory;
+import WebDriverHelpers.WebDriverFactory;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

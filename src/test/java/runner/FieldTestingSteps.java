@@ -1,12 +1,13 @@
 package runner;
 
+import WebDriverHelpers.SharedDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import pages.SubmitFormPage;
-import WebDriver.WebDriverFactory;
+import WebDriverHelpers.WebDriverFactory;
 
 
 import java.time.Duration;
@@ -15,6 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class FieldTestingSteps {
+
+    private final SharedDriver sharedDriver;
+
+    public FieldTestingSteps(SharedDriver sharedDriver) {
+
+        this.sharedDriver = sharedDriver;
+    }
 
     public static final String EXPECTED_DD_SELECT_CONTENTS = "                Open this select menu\n" +
             "                One\n" +
@@ -27,21 +35,10 @@ public class FieldTestingSteps {
 
     SubmitFormPage submitFormPage;
 
-    @Before
-    public void setup() {
-        driver = WebDriverFactory.getDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
-    public FieldTestingSteps() {
-        this.driver = WebDriverFactory.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
 
     @Then("I see that the Text Input is empty")
     public void iSeeThatTheTextInputIsEmpty() {
+        WebDriver driver = sharedDriver.getDriver();
         submitFormPage = new SubmitFormPage(driver);
         assertEquals("", submitFormPage.textInput.getText());
     }

@@ -1,7 +1,9 @@
-package WebDriver;
+package WebDriverHelpers;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import WebDriverManager;
 
 import java.time.Duration;
 
@@ -13,11 +15,8 @@ public class WebDriverFactory {
     }
 
     public static WebDriver getDriver() {
-        if (driver == null) {
-            driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        }
-        return driver;
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
     }
 
     public static void quitDriver() {
