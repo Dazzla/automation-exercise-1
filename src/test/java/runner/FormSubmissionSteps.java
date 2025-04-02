@@ -23,8 +23,8 @@ public class FormSubmissionSteps {
 
     @Before
     public void setup() {
-        this.driver = WebDriverFactory.getDriver();
-        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver = WebDriverFactory.getDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -32,7 +32,6 @@ public class FormSubmissionSteps {
         this.driver = WebDriverFactory.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-
 
 
     @Given("I am on the form submission page")
@@ -56,6 +55,7 @@ public class FormSubmissionSteps {
     public void tearDown() {
         if (driver != null) {
             driver.quit();
+            driver = null;
         }
     }
 }
