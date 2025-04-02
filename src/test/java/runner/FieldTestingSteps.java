@@ -29,8 +29,8 @@ public class FieldTestingSteps {
 
     @Before
     public void setup() {
-        this.driver = WebDriverFactory.getDriver();
-        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver = WebDriverFactory.getDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -118,10 +118,11 @@ public class FieldTestingSteps {
         assertEquals("https://www.selenium.dev/selenium/web/index.html", driver.getCurrentUrl());
     }
 
-    @After  // Crucial: quit driver *after* each scenario
+    @After
     public void tearDown() {
-        if(driver != null){
+        if (driver != null) {
             driver.quit();
+            driver = null;
         }
     }
 }
