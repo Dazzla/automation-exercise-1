@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,21 +10,21 @@ public class SubmitFormPage {
     final String NAME = "Test User";
     final String PASSWORD = "complexpassword";
     public static final String EMPTY = "";
-    public WebDriver driver;
-    public WebElement textInput;
-    public WebElement passwordInput;
-    public WebElement textAreaInput;
-    public WebElement dropdownSelectInput;
-    public WebElement datalistInput;
-    public WebElement checkedCheckboxInput;
-    public WebElement defaultCheckboxInput;
-    public WebElement checkedRadioInput;
-    public WebElement uncheckedRadioInput;
-    public WebElement colorPickerInput;
-    public WebElement datePickerInput;
-    public WebElement sliderInput;
-    public WebElement submitButton;
-    public WebElement linkToIndexPage;
+    public final WebDriver driver;
+    public final WebElement textInput;
+    public final WebElement passwordInput;
+    public final WebElement textAreaInput;
+    public final WebElement dropdownSelectInput;
+    public final WebElement datalistInput;
+    public final WebElement checkedCheckboxInput;
+    public final WebElement defaultCheckboxInput;
+    public final WebElement checkedRadioInput;
+    public final WebElement uncheckedRadioInput;
+    public final WebElement colorPickerInput;
+    public final WebElement datePickerInput;
+    public final WebElement sliderInput;
+    public final WebElement submitButton;
+    public final WebElement linkToIndexPage;
 
     public SubmitFormPage(WebDriver driver){
        this.driver = driver;

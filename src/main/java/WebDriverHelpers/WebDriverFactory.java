@@ -14,11 +14,4 @@ public WebDriverFactory() {}
     public static WebDriver createWebDriver() {
         return new ChromeDriver();
     }
-
-    public static WebDriver getDriver() {
-
-        System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver"); // Set the actual path
-        return new ChromeDriver();
-
-    }
 }

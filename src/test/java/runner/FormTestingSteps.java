@@ -24,11 +24,13 @@ public class FormTestingSteps extends BaseTest{
     }
 
 
-    public static final String EXPECTED_DD_SELECT_CONTENTS = "                Open this select menu\n" +
-            "                One\n" +
-            "                Two\n" +
-            "                Three\n" +
-            "              ";
+    public static final String EXPECTED_DD_SELECT_CONTENTS = """
+                            Open this select menu
+                            One
+                            Two
+                            Three
+                          \
+            """;
     public static final String DEFAULT_PURPLE = "rgba(255, 255, 255, 1)";
     private WebDriver driver;
     private WebDriverWait wait;
