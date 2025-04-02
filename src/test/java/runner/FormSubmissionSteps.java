@@ -17,6 +17,7 @@ import java.time.Duration;
 
 public class FormSubmissionSteps {
 
+    public static final String CONFIRMATION_MESSAGE = "Received!";
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -37,13 +38,13 @@ public class FormSubmissionSteps {
     @When("I submit the form with valid data")
     public void fill_form() {
         SubmitFormPage submitFormPage = new SubmitFormPage(driver);
-        submitFormPage.completeFormAndSubmit("Sample Name", "sample@example.com");
+        submitFormPage.completeFormAndSubmit();
     }
 
     @Then("I see a confirmation message")
     public void verify_success_message() {
         WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
-        assertEquals("Received!", message.getText());
+        assertEquals(CONFIRMATION_MESSAGE, message.getText());
     }
 
     @After

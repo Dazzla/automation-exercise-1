@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.openqa.selenium.By;
@@ -7,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 public class SubmitFormPage {
 
+    final String NAME = "Test User";
+    final String PASSWORD = "complexpassword";
     public static final String EMPTY = "";
     public WebDriver driver;
     public WebElement textInput;
@@ -36,13 +39,19 @@ public class SubmitFormPage {
        sliderInput = driver.findElement(By.name("my-range"));
    }
 
-    public void completeFormAndSubmit(String name, String email){completeForm(name, email); submitForm();}
+    public void completeFormAndSubmit(){completeForm(); submitForm();}
 
-    public void completeForm(String name, String email){
-        assertEquals(EMPTY, textInput.getText());
-        assertEquals(EMPTY, passwordInput.getText());
-        assertEquals(EMPTY, textAreaInput.getText());
-        dropdownSelectInput.findElement(By.cssSelector("select[name='my-select'] option[value='1']")).click();
+    public void completeForm(){
+        textInput.sendKeys(NAME);
+        passwordInput.sendKeys(PASSWORD);
+        textAreaInput.sendKeys("Sample Text");
+        dropdownSelectInput.sendKeys("Two");
+        datalistInput.sendKeys("San Francisco");
+        checkedCheckboxInput.click();
+        radioInput.click();
+        colorPickerInput.sendKeys("red");
+        datePickerInput.sendKeys("12/12/2020");
+        sliderInput.sendKeys(Keys.ARROW_RIGHT);
 }
 
     public void submitForm(){

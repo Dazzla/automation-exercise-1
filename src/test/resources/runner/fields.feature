@@ -4,7 +4,7 @@ Feature: Fields
     Given I am on the form submission page
     Then I see that the Text Input is empty
     And the password field is empty
-    And the Textarea field is blank
+    And the Textarea field is empty
     And the Dropdown (select) is 'Open this select menu'
     And the Dropdown (datalist) is blank
     And the checked checkbox is checked
