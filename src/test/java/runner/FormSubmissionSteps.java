@@ -6,23 +6,23 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
 import pages.SubmitFormPage;
+import WebDriver.WebDriverFactory;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 
-public class FormSteps {
+public class FormSubmissionSteps {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
     @Before
     public void setup() {
-        driver = new ChromeDriver();
+        driver = WebDriverFactory.getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
