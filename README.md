@@ -19,12 +19,17 @@ Install and initiate gradle wrapper:
 
 - *nix, MacOS:
 
-```./gradlew test```
+```./gradlew build```
 
 - Windows:
 
-```gradlew.bat test```
+```gradlew.bat build```
 
 - Windows Powershell:
 
 ```.\gradlew.bat test```
+
+# Reports
+Reports can be found in the project's build directory
+
+automation-exercise-1/build/reports/tests/test/index.html
