@@ -15,14 +15,14 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class FieldTestingSteps {
+public class FieldTestingSteps extends BaseTest{
 
-    private final SharedDriver sharedDriver;
 
     public FieldTestingSteps(SharedDriver sharedDriver) {
-
-        this.sharedDriver = sharedDriver;
+        this.driver = sharedDriver.getDriver();  // Initialize the driver, not create a new FormSubmissionSteps
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+
 
     public static final String EXPECTED_DD_SELECT_CONTENTS = "                Open this select menu\n" +
             "                One\n" +
@@ -38,7 +38,6 @@ public class FieldTestingSteps {
 
     @Then("I see that the Text Input is empty")
     public void iSeeThatTheTextInputIsEmpty() {
-        WebDriver driver = sharedDriver.getDriver();
         submitFormPage = new SubmitFormPage(driver);
         assertEquals("", submitFormPage.textInput.getText());
     }

@@ -5,7 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebDriverFactory {
 
-    private WebDriverFactory() {}
+public WebDriverFactory() {}
+
+    public static WebDriverFactory create() {
+        return new WebDriverFactory();
+    }
+
+    public static WebDriver createWebDriver() {
+        return new ChromeDriver();
+    }
 
     public static WebDriver getDriver() {
 

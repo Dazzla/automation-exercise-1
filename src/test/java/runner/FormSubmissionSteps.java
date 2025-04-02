@@ -1,5 +1,6 @@
 package runner;
 
+import WebDriverHelpers.SharedDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -15,21 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 
-public class FormSubmissionSteps {
+public class FormSubmissionSteps extends BaseTest{
 
     public static final String CONFIRMATION_MESSAGE = "Received!";
+
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @Before
-    public void setup() {
-        driver = WebDriverFactory.getDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
 
-    public FormSubmissionSteps() {
-        this.driver = WebDriverFactory.getDriver();
+
+    public FormSubmissionSteps(SharedDriver sharedDriver) {
+        this.driver = sharedDriver.getDriver();  // Initialize the driver, not create a new FormSubmissionSteps
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
