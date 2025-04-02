@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+
+variables:
+  JAVA_HOME: "/usr/lib/jvm/java-17-openjdk"
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
+
+cache:
+  key: "$CI_JOB_NAME"
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+build-job:
+  stage: build
+  image: gradle:8.3-jdk17
+  script:
+    - gradle --version
+    - ./gradlew clean build
+
+test-job:
+  stage: test
+  image: gradle:8.3-jdk17
+  script:
+    - ./gradlew test
+  artifacts:
+    when: always
+    paths:
+      - build/reports/tests/test/index.html
+      - build/test-results/test/
+    expire_in: 1 week
