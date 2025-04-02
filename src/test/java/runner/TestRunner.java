@@ -7,9 +7,4 @@ import org.junit.jupiter.api.AfterAll;
 @Cucumber
 public class TestRunner {
 
-    @AfterAll  // For closing after the test run
-    public static void tearDown() {
-        WebDriverFactory.quitDriver();
-    }
-
 }
