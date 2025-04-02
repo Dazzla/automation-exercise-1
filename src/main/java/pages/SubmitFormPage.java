@@ -19,10 +19,13 @@ public class SubmitFormPage {
     public WebElement datalistInput;
     public WebElement checkedCheckboxInput;
     public WebElement defaultCheckboxInput;
-    public WebElement radioInput;
+    public WebElement checkedRadioInput;
+    public WebElement uncheckedRadioInput;
     public WebElement colorPickerInput;
     public WebElement datePickerInput;
     public WebElement sliderInput;
+    public WebElement submitButton;
+    public WebElement linkToIndexPage;
 
     public SubmitFormPage(WebDriver driver){
        this.driver = driver;
@@ -33,10 +36,13 @@ public class SubmitFormPage {
        datalistInput = driver.findElement(By.name("my-datalist"));
        checkedCheckboxInput = driver.findElement(By.id("my-check-1"));
        defaultCheckboxInput = driver.findElement(By.id("my-check-2"));
-       radioInput = driver.findElement(By.name("my-radio"));
+       checkedRadioInput = driver.findElement(By.id("my-radio-1"));
+       uncheckedRadioInput = driver.findElement(By.id("my-radio-2"));
        colorPickerInput = driver.findElement(By.name("my-colors"));
        datePickerInput = driver.findElement(By.name("my-date"));
        sliderInput = driver.findElement(By.name("my-range"));
+       submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+       linkToIndexPage = driver.findElement(By.cssSelector("a[href='./index.html']"));
    }
 
     public void completeFormAndSubmit(){completeForm(); submitForm();}
@@ -48,7 +54,7 @@ public class SubmitFormPage {
         dropdownSelectInput.sendKeys("Two");
         datalistInput.sendKeys("San Francisco");
         checkedCheckboxInput.click();
-        radioInput.click();
+        uncheckedRadioInput.click();
         colorPickerInput.sendKeys("red");
         datePickerInput.sendKeys("12/12/2020");
         sliderInput.sendKeys(Keys.ARROW_RIGHT);
@@ -56,14 +62,7 @@ public class SubmitFormPage {
 
     public void submitForm(){
         driver.findElement(By.cssSelector("button[type='submit']")).click();
-    }
 
-    public void visit() {
-        driver.get("https://www.selenium.dev/selenium/web/web-form.html");
-    }
-    
-    public void verifyStateOfFields(WebElement element, String state){
-        assertEquals("", textInput.getText());
     }
 
 }

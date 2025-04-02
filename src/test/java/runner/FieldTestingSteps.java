@@ -9,113 +9,119 @@ import pages.SubmitFormPage;
 import WebDriver.WebDriverFactory;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class FieldTestingSteps {
 
+    public static final String EXPECTED_DD_SELECT_CONTENTS = "                Open this select menu\n" +
+            "                One\n" +
+            "                Two\n" +
+            "                Three\n" +
+            "              ";
+    public static final String DEFAULT_PURPLE = "rgba(255, 255, 255, 1)";
     private WebDriver driver;
     private WebDriverWait wait;
 
     SubmitFormPage submitFormPage;
 
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
-
     @Before
     public void setup() {
-        driver = WebDriverFactory.getDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        this.driver = WebDriverFactory.getDriver();
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
+    public FieldTestingSteps() {
+        this.driver = WebDriverFactory.getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
 
     @Then("I see that the Text Input is empty")
     public void iSeeThatTheTextInputIsEmpty() {
         submitFormPage = new SubmitFormPage(driver);
-        assertEquals("", driver.findElement(By.id("my-text-id")).getText());
+        assertEquals("", submitFormPage.textInput.getText());
     }
 
     @And("the password field is empty")
     public void thePasswordFieldIsEmpty() {
-        fail("pending");
+        assertEquals("", submitFormPage.passwordInput.getText());
     }
 
-    @And("the Textarea field is blank")
+    @And("the Textarea field is empty")
     public void theTextareaFieldIsBlank() {
-        fail("pending");
-
+        assertEquals("", submitFormPage.textAreaInput.getText());
     }
 
-    @And("the Dropdown \\(select) is {string}")
+    @And("the Dropdown select is 'Open this select menu'")
     public void theDropdownSelectIsOpenThisSelectMenu() {
-        fail("pending");
-
+        assertEquals(EXPECTED_DD_SELECT_CONTENTS, submitFormPage.dropdownSelectInput.getText());
     }
 
-    @And("the Dropdown \\(datalist) is blank")
+    @And("the Dropdown datalist is blank")
     public void theDropdownDatalistIsBlank() {
-        fail("pending");
-
+        assertEquals("", submitFormPage.datalistInput.getText());
     }
 
     @And("the checked checkbox is checked")
     public void theCheckedCheckboxIsChecked() {
-        fail("pending");
+        assert( submitFormPage.checkedCheckboxInput.isSelected());
+
 
     }
 
     @And("the default checkbox is unchecked")
     public void theDefaultCheckboxIsUnchecked() {
-        fail("pending");
-
+        assertFalse( submitFormPage.defaultCheckboxInput.isSelected());
     }
 
     @And("the checked radio button is selected")
     public void theCheckedRadioButtonIsSelected() {
-        fail("pending");
-
+        assert(submitFormPage.checkedRadioInput.isSelected());
     }
 
     @And("the default radio button is unselected")
     public void theDefaultRadioButtonIsUnselected() {
-        fail("pending");
-
+        assertFalse( submitFormPage.uncheckedRadioInput.isSelected());
     }
 
     @And("the color picker is purple")
     public void theColorPickerIsPurple() {
-        fail("pending");
+        assertEquals(DEFAULT_PURPLE, submitFormPage.colorPickerInput.getCssValue("background-color"));
 
     }
 
     @And("the date picker is empty")
     public void theDatePickerIsEmpty() {
-        fail("pending");
+        assertEquals("", submitFormPage.datePickerInput.getText());
 
     }
 
     @And("the slider is centred")
     public void theSliderIsCentred() {
-        fail("pending");
+        assert(submitFormPage.sliderInput.getAttribute("value").contains("5"));
 
     }
 
-    @And("tbe button is submit")
+    @And("tbe button is a Submit button")
     public void tbeButtonIsSubmit() {
-        fail("pending");
+        assert submitFormPage.submitButton.getAttribute("type").equals("submit");
 
     }
 
-    @And("the link is to the index page")
+    @And("there is a link to the index page")
     public void theLinkIsToTheIndexPage() {
-        fail("pending");
+        submitFormPage.linkToIndexPage.click();
+        assertEquals("https://www.selenium.dev/selenium/web/index.html", driver.getCurrentUrl());
+    }
+
+    @After  // Crucial: quit driver *after* each scenario
+    public void tearDown() {
+        if(driver != null){
+            driver.quit();
+        }
     }
 }
