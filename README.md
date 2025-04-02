@@ -35,3 +35,8 @@ Install and initiate gradle wrapper:
 Reports can be found in the project's build directory
 
 automation-exercise-1/build/reports/tests/test/index.html
+
+# Tech Debt
+Move environment into config
+Refactor fields scenarios into outlines
+Possibly extend suite to handle different browsers

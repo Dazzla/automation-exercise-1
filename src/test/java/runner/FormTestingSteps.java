@@ -113,6 +113,9 @@ public class FormTestingSteps extends BaseTest{
 
     @And("tbe button is a Submit button")
     public void tbeButtonIsSubmit() {
+        //Notes:
+        //Checking that the submit button is 'type="submit' looks like begging the question.
+        // It is, but I thought it best to make this test explicit.
         assert submitFormPage.submitButton.getAttribute("type").equals("submit");
 
     }
