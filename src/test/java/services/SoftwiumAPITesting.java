@@ -41,7 +41,7 @@ class SoftwiumAPITesting {
 
     @Test
     void testGetCurrencyById() {
-        // Replace '1' with an actual currency ID or test data.
+
         RestAssured
                 .given()
                 .contentType(ContentType.JSON)
@@ -56,7 +56,6 @@ class SoftwiumAPITesting {
     void testCreateNewBook() {
 
 
-        // Optional: Validate content, ensuring the response contains countries in the LIC income group
         RestAssured
                 .given()
                 .queryParam("format", "json")
@@ -70,9 +69,6 @@ class SoftwiumAPITesting {
 
     @Test
     void testDeleteBook() {
-
-
-        // Optional: Validate content, ensuring the response contains countries in the LIC income group
 
         RestAssured
                 .given()

@@ -2,9 +2,11 @@
 
 # Prerequisites
 
-Java Runtime 23
+Java Runtime 
 
+Tested with Java 23
 http://oracle.com/java/technologies/downloads/#java23
+
 
 Gradle Wrapper
 

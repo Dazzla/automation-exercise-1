@@ -33,7 +33,7 @@ public class WebDriverParameterResolver implements ParameterResolver {
 
         }
 
-        return null; // Or throw an exception - this should ideally never be reached
+        return null;
     }
 
 

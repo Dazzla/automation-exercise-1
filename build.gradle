@@ -7,9 +7,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0' // Updated to a newer version
-    implementation 'org.junit.jupiter:junit-jupiter:5.11.0-M1' // Version aligned with Cucumber
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.0-M1' // Version aligned with Cucumber
+    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
+    implementation 'org.junit.jupiter:junit-jupiter:5.11.0-M1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.0-M1'
     implementation 'io.cucumber:cucumber-java:7.14.0'
     implementation 'io.cucumber:cucumber-junit-platform-engine:7.14.0'
 
