@@ -1,15 +1,27 @@
 package WebDriverHelpers;
+
 import org.openqa.selenium.WebDriver;
 
-public class SharedDriver {
+public class SharedDriver implements AutoCloseable {
+
     private WebDriver driver;
 
-    public WebDriver getDriver() {
+    public synchronized WebDriver getDriver() {
+        if (driver == null) {
+            driver = WebDriverFactory.createWebDriver();
+        }
         return driver;
     }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
+    public synchronized boolean isInitialised() {
+        return driver != null;
     }
 
+    @Override
+    public synchronized void close() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 }
