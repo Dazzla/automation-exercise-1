@@ -1,6 +1,6 @@
 package runner;
 
-import WebDriverHelpers.WebDriverFactory;
+import WebDriverHelpers.SharedDriver;
 import WebDriverHelpers.WebDriverParameterResolver;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,22 +10,27 @@ import org.openqa.selenium.WebDriver;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(WebDriverParameterResolver.class)
-public class BaseTest {
+public abstract class BaseTest {
 
-    private WebDriver driver;
-
+    protected WebDriver driver;
+    private SharedDriver sharedDriver;
 
     @BeforeAll
-    void setUp(WebDriverParameterResolver parameterResolver) {
-        this.driver = WebDriverFactory.createWebDriver();  // Or webDriverFactory.createWebDriver()
-        parameterResolver.setDriver(driver);
-    } // <-- Added missing closing brace
+    void setUp(SharedDriver sharedDriver) {
+        this.sharedDriver = sharedDriver;
+        this.driver = sharedDriver.getDriver();
+    }
 
+    protected WebDriver getDriver() {
+        return driver;
+    }
 
     @AfterAll
     void tearDown() {
-        if (driver != null) {
-            driver.quit();
+        if (sharedDriver != null) {
+            sharedDriver.close();
+            sharedDriver = null;
         }
+        driver = null;
     }
 }
